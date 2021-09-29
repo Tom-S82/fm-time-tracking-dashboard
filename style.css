@@ -1,0 +1,333 @@
+:root {
+  --blue: hsl(246, 80%, 60%);
+  --white: hsl(255, 100%, 100%);
+
+  --light-orange: hsl(15, 100%, 70%);
+  --soft-blue: hsl(195, 74%, 62%);
+  --light-red: hsl(348, 100%, 68%);
+  --lime-green: hsl(145, 58%, 55%);
+  --violet: hsl(264, 64%, 52%);
+  --soft-orange: hsl(43, 84%, 65%);
+
+  --very-dark-blue: hsl(226, 43%, 10%);
+  --dark-blue: hsl(235, 46%, 20%);
+  --dark-blue-selected: hsl(236, 40%, 35%);
+  --desaturated-blue: hsl(235, 45%, 61%);
+  --pale-blue: hsl(236, 100%, 87%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Rubik', sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: var(--very-dark-blue);
+  color: var(--white);
+}
+
+.container {
+  max-width: 12.75em;
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; */
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 8em repeat(6, 5.125em);
+  gap: 2.25em;
+}
+
+
+/* Card Header */
+.card-head__profile {
+  background: var(--blue);
+  min-height: 5.5em;
+  border-radius: 0.6em;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas: "pic for"
+                        "pic name";
+  gap: 0.25em;
+  padding: 1em;
+}
+
+.card-head--image {
+  grid-area: pic;
+  align-self: center;
+  height: 3em;
+  border-radius: 50%;
+  border: 0.15em solid white;
+}
+
+.card-head__profile p {
+  grid-area: for;
+  align-self: flex-end;
+  font-size: 0.6em;
+  font-weight: 300;
+  color: var(--pale-blue);
+  padding-left: 1em;
+}
+
+.card-head__profile h1 {
+  grid-area: name;
+  font-size: 0.95em;
+  font-weight: 300;
+  padding-left: 0.6em;
+}
+
+.card-head__options {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: var(--dark-blue);
+  border-radius: 0 0 0.5em 0.5em;
+  height: 2.5em;
+}
+
+.card-head__options::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  transform: translateY(-1.5em);
+  z-index: -1;
+  background: var(--dark-blue);
+}
+
+.card-head__options .option {
+  font-size: 0.7em;
+  font-weight: 300;
+  color: var(--pale-blue);
+  transform: translateX(0.6em);
+}
+
+.card-head__options .selected {
+  color: var(--white);
+}
+
+.option:hover:not(.selected) {
+  color: var(--white);
+  cursor: pointer;
+}
+
+/* Other Cards */
+.card {
+  display: grid;
+  grid-template-columns: 40% 1fr;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-areas: "head dots"
+                        "hours previous";
+  background: var(--dark-blue);
+  border-radius: 0.5em;
+  width: 100%;
+  padding: 1em;
+  gap: 0.25em;
+  position: relative;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  height: 50%;
+  width: 100%;
+  transform: translateY(-1.5em);
+  border-radius: 0.5em;
+  z-index: -1;
+}
+
+.card:nth-child(2)::before {
+  background: var(--light-orange) url("./images/icon-work.svg");
+}
+
+.card:nth-child(3)::before {
+  background: var(--soft-blue) url("./images/icon-play.svg");
+}
+
+.card:nth-child(4)::before {
+  background: var(--light-red) url("./images/icon-study.svg");
+}
+
+.card:nth-child(5)::before {
+  background: var(--lime-green) url("./images/icon-exercise.svg");
+}
+
+.card:nth-child(6)::before {
+  background: var(--violet) url("./images/icon-social.svg");
+}
+
+.card:nth-child(7)::before {
+  background: var(--soft-orange) url("./images/icon-self-care.svg");
+}
+
+.card:nth-child(-n+7)::before {
+  background-size: 3em;
+  background-repeat: no-repeat;
+  background-position: 9em -0.4em;
+}
+
+
+.card__head {
+  grid-area: head;
+  font-size: 0.7em;
+  align-self: flex-end;
+  font-weight: 400;
+}
+
+.card__hours {
+  grid-area: hours;
+  font-size: 1.2em;
+  font-weight: 300;
+}
+
+.card__dot {
+  grid-area: dots;
+  justify-self: flex-end;
+  font-weight: 500;
+  letter-spacing: 0.1ch;
+  color: var(--pale-blue);
+}
+
+.card__previous {
+  grid-area: previous;
+  align-self: center;
+  justify-self: flex-end;
+  font-size: 0.6em;
+  color: var(--pale-blue);
+}
+
+.card:hover {
+  background: var(--dark-blue-selected);
+}
+
+.card__dot:hover {
+  color: var(--white);
+  cursor: pointer;
+}
+
+
+
+
+
+/* Media (Larger Screen) */
+@media (min-width: 70rem) {
+  .container {
+    max-width: 90vw;
+    grid-template-columns: repeat(4, 14.5em);
+    grid-template-rows: repeat(2, 13em);
+    grid-template-areas: "profile work play study"
+                          "profile exercise social selfcare";
+    gap: 3em 1.75em;
+  }
+
+  .card-head {
+    grid-area: profile;
+    min-height: 100%;
+  }
+
+  .card-head__profile {
+    grid-template-columns: 1fr;
+    grid-template-rows: 40% 10% 1fr;
+    grid-template-areas: "pic"
+                          "for"
+                          "name";
+    gap: 0.25em;
+    padding: 0.5em 1em;
+    min-height: 20.25em;
+    transform: translateY(-2.5em);
+  }
+
+  .card-head--image {
+    height: 5em;
+    border: 0.2em solid white;
+    margin-left: 0.25rem;
+  }
+
+  .card-head__profile p {
+    align-self: center;
+    padding-left: 0.5rem;
+    font-size: 0.8em;
+  }
+
+  .card-head__profile h1 {
+    font-size: 2.5em;
+    padding-left: 0.5rem;
+    word-spacing: 5vw;
+  }
+
+  .card-head__options {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.5em 0.5em 0.5em 1em;
+    min-height: 5em;
+    font-size: 1.5em;
+  }
+
+  .card-head__options::before {
+    /* background: red; */
+    transform: translate(-1em, -2.5em);
+  }
+
+  .card-head__options .option {
+    transform: translate(0, -1.25em);
+  }
+
+  .option {
+    padding-top: 0.5em;
+  }
+
+
+  .card {
+    grid-template-columns: 50% 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas: "head dots"
+                          "hours hours"
+                          "previous previous";
+    padding: 1.75em;
+    max-height: 11.75em;
+    border-radius: 1em;
+  }
+
+  .card::before {
+    transform: translateY(-2.5em);
+    border-radius: 1em;
+  }
+
+  .card:nth-child(-n+7)::before {
+    background-size: 4.5em;
+    background-repeat: no-repeat;
+    background-position: 9em -0.75em;
+  }
+
+  .card__head {
+    grid-area: head;
+    font-size: 1em;
+    align-self: flex-start;
+  }
+  
+  .card__hours {
+    grid-area: hours;
+    font-size: 3em;
+  }
+  
+  .card__dot {
+    grid-area: dots;
+    align-self: flex-start;
+    font-size: 1.3em;
+  }
+  
+  .card__previous {
+    grid-area: previous;
+    align-self: center;
+    justify-self: flex-start;
+    font-size: 0.8em;
+  }
+}
