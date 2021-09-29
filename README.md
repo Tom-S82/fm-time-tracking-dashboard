@@ -6,3 +6,4 @@
   - 2 layers
     - bg (color & icon rotated) @2cm high (::before)
     - grid (2 col (equal) x 2 row (25%,75%)) @1.5cm high
+    .
